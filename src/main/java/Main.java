@@ -12,21 +12,26 @@ public class Main implements DS1Interface  {
     /* Implement these methods */
 
     @Override
-    public int[] insertionSort(int[] input) {
-    	for (int i = 1; i <= input.length - 1; i++){
-    		int key = input[i];
+    /* This implementation is based on the pseudocode viewed in the lectures*/
+    public int[] insertionSort(int[] input) {	/* Implementation "in situ" of the insertionSort algorithm */
+    	for (int i = 1; i <= input.length - 1; i++){	/* Outer loop goes through all the item in the input array */
+    		int key = input[i];	/* We set the key with the value of the first non-sorted element */
     		int j = i-1;
-    		while (j >= 0 && input[j] > key){
-    			input[j+1] = input[j];
-    			j = j-1;
-    		input[j+1] = key;
+    		while (j >= 0 && input[j] > key){	/* Inner loop goes through the sorted part of the array */
+    			input[j+1] = input[j];	/* We copy the value of the compared item to the right position */
+    			j = j-1;	/* Doing this inner loop we "move" the sorted part to the right until we create a free spot for the key */
+    		input[j+1] = key;	/* We insert the key value in the free spot on the sorted part */
     		}
     	}
-        return input;
+        return input;	/* Because this sorting is "in situ" we can return the same array */
+    /* We can see that the outer loop goes through the whole array so it takes n times to complete.
+     * The inner loop, in the worst case, goes through all the sorted part so in the end the complexity of the algorithm
+     * is O(n^2) */
     }
 
     @Override
-    public int[] mergeSort(int[] input) {
+    /* This implementation is based on the pseudocode viewed in the lectures*/
+    public int[] mergeSort(int[] input) { /* Implementation "ex situ" of the mergeSort algorithm */
     	if (input.length <=1){
     		return input;
     	}
