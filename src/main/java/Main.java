@@ -97,9 +97,9 @@ public class Main implements DS1Interface  {
 
     @Override
 
-    /*The HeapSort can be divided in two parts*/
+    /*The HeapSort can be divided in three parts*/
     /*The first part is convert the array into a max-heap*/
-    /*The we have to swap the position of the last element with the first one, and exclude it from the heap*/
+    /*Then we have to swap the position of the last element with the first one, and exclude it from the heap*/
     /*Finally, we have to reconstruct the max-heap and repeat the algorithm*/
 
     public int[] heapSort(int[] input) {
@@ -121,6 +121,7 @@ public class Main implements DS1Interface  {
         input[i2] = tmp; 
 	}
 
+    /*This algorithm sort an array as a max-heap*/
 	private static void buildHeap(int[] input) {
 		n = input.length-1;
         for (int i = n/2; i >= 0; i--){
@@ -131,26 +132,24 @@ public class Main implements DS1Interface  {
     /*This method is the "maxHeapify".*/
 	private static void buildMaxHeap(int[] input, int i) {
 		{ 
-	        int left = 2*i ;
-	        int right = 2*i + 1;
-	        int max = i;
-	        if (left <= n && input[left] > input[i])
+	        int left = 2*i ; /*The left son of the node*/
+	        int right = 2*i + 1; /*The right son of the node*/
+	        int max = i; /*The variable "max" is going to be the faher node*/
+	        if (left <= n && input[left] > input[i]) /*If the left son is bigger, it will be the new father*/
 	            max = left;
-	        if (right <= n && input[right] > input[max])        
+	        if (right <= n && input[right] > input[max]) /*If the right son is bigger, it will be the new father*/       
 	            max = right;
 	 
-	        if (max != i)
+	        if (max != i) /*If we need to make a change*/
 	        {
-	            swap(input, i, max);
-	            buildMaxHeap(input, max);
+	            swap(input, i, max); /*We swap them*/
+	            buildMaxHeap(input, max); /*We make the recursive call*/
 	        }
 	    }  
     }
 
     /* The complexity of the buildMaxHeap() is O(log(n)), and the algorithm calls this methos "n" times.*/
     /* For those reasons, the complexity of the algorithm is O(log(n)*n), in both worst case and best case.
-
-
 
 
     /* BEGIN UTIL FUNCTION. DO NOT TOUCH */
