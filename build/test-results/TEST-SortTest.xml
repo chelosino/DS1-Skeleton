@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="SortTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2016-09-19T20:14:32" hostname="MBP-de-Marcel" time="0.008">
+<testsuite name="SortTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2016-09-21T10:59:41" hostname="MBP-de-Marcel" time="0.01">
   <properties/>
-  <testcase name="testSimpleHeapSort" classname="SortTest" time="0.005"/>
+  <testcase name="testSimpleHeapSort" classname="SortTest" time="0.008"/>
   <testcase name="testSimpleInsertionSort" classname="SortTest" time="0.001"/>
-  <testcase name="testSimpleMergeSort" classname="SortTest" time="0.001"/>
+  <testcase name="testSimpleMergeSort" classname="SortTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
