@@ -8,7 +8,6 @@ import java.util.Arrays;
 
 public class Main implements DS1Interface  {
 
-
     /* Implement these methods */
 
     @Override
@@ -31,32 +30,49 @@ public class Main implements DS1Interface  {
 
     @Override
     /* This implementation is based on the pseudocode viewed in the lectures*/
+    /* Using mergesort, we use recursive calls: While the sequence is non-empty, we split the array in 2 parts and we make the recursive call with each of them*/
+    /* When the array is going to be in the base case, the algorithm is going the start merging the arrays until we have the final one*/
+
     public int[] mergeSort(int[] input) { /* Implementation "ex situ" of the mergeSort algorithm */
-    	if (input.length <=1){
+    	
+        if (input.length <=1){ /*This is the base case. When the algorithm makes his last recursion call, it calls it*/
     		return input;
     	}
-    	int q = Math.floorDiv(input.length, 2);
-    	int[] left = Arrays.copyOfRange(input, 0, q);
-    	int[] right = Arrays.copyOfRange(input, q, input.length);
-    	left = mergeSort(left);
-    	right = mergeSort(right);
-    	return merge(left, right);
+
+        /* We have to divide the array in 2 parts (almost equals)*/
+    	int q = Math.floorDiv(input.length, 2); /*We decide the point that is going to cut the array*/
+    	int[] left = Arrays.copyOfRange(input, 0, q); /*We create the first new array*/
+    	int[] right = Arrays.copyOfRange(input, q, input.length); /*We create the second new array*/
+    	/*Now, we make the recursive call. The algorithm will make the calls until it gets to the base case, and them is going to start merging.*/
+        left = mergeSort(left); /*Recursive call for the fist array*/
+    	right = mergeSort(right); /*Recursive call for the second array*/
+    	return merge(left, right); /*This method is explained below*/
     }
-    
-    private int[] merge(int[] left, int[] right) {
+
+    /* The "merge" method is going to merge 2 different arrays*/    
+    private int[] merge(int[] left, int[] right) { /*The input are the 2 arrays we are going to merge"*/
     	int i = 0;
     	int j = 0;
-    	int[] result = new int[left.length+right.length];
-    	while (i < left.length && j < right.length){
-    		if (left[i] <= right[j]){
+    	int[] result = new int[left.length+right.length]; /* The lenght of the new array is the sum of the lenght of the 2 prior arrays*/
+    	while (i < left.length && j < right.length){ /* The algorithms is going to enter to the loop only if we still have elements in both arrays*/
+    		if (left[i] <= right[j]){ /
     			result[i+j] = left[i];
     			i++;
     		}
+
     		else{
     			result[i+j] = right[j];
     			j++;
     		}
+
+            /*The algorithm is comparing the first elements of each array*/
+            /* After comparing the 2 first elements, it choose the bigger one, adds it in the new array and move the pointer (i,j) to the next element*/
+
     	}
+
+        /* When we dont have more elements in one of the arrays, the algorithm just add the remaining elements to the new array*/
+        /*Those elements are already sorted, we dont need to sort them again*/
+
     	if (i == left.length && j < right.length){
     		while (j < right.length){
     			result[i+j] = right[j];
@@ -72,20 +88,34 @@ public class Main implements DS1Interface  {
     	return result;
     }
 
+    /*If we assume that the lengh of the algorithm has the form 2^i, the recursion tree that is being creating has log(n+1) layers.*/
+    /*For example, if we give to the algorithm an array with 7 elements, it will have 3 layers*/
+    /* The work per layer is O(n).*/
+    /* We can conclude that in the worst case, the algorithm will have a complexity of O(n*log(n))*/
+    /* In the best case the algorithm will also have a O(n*log(n)) complexity, because it will have to make the recursives calls and create the tree always.*/
+
+
     @Override
+
+    /*The HeapSort can be divided in two parts*/
+    /*The first part is convert the array into a max-heap*/
+    /*The we have to swap the position of the last element with the first one, and exclude it from the heap*/
+    /*Finally, we have to reconstruct the max-heap and repeat the algorithm*/
+
     public int[] heapSort(int[] input) {
-    	buildHeap(input);
-    	for (int i = n; i > 0; i--){
-    		swap(input,0,i);
-    		n--;
-    		buildMaxHeap(input,0);
+    	buildHeap(input); /*First we need to build the max-heap (algorithm below)*/
+    	for (int i = n; i > 0; i--){ / /*We repeat the steps "n" times (one time for each element)*/
+    		swap(input,0,i); /*We swap the first element (the root) with the last one.*/
+    		n--; 
+    		buildMaxHeap(input,0); /*We recreate the max-heap*/
     	}
         return input;
     }
 
     private static int n;
     
-	private static void swap(int[] input, int i, int i2) {
+    /*This method change the position of 2 elements of one array, swaping them*/
+	private static void swap(int[] input, int i, int i2) { /*The inputs are the array and the 2 position of the element we want to swap*/
 		int tmp = input[i];
         input[i] = input[i2];
         input[i2] = tmp; 
@@ -98,6 +128,7 @@ public class Main implements DS1Interface  {
         }
 	}
 
+    /*This method is the "maxHeapify".*/
 	private static void buildMaxHeap(int[] input, int i) {
 		{ 
 	        int left = 2*i ;
@@ -115,6 +146,9 @@ public class Main implements DS1Interface  {
 	        }
 	    }  
     }
+
+    /* The complexity of the buildMaxHeap() is O(log(n)), and the algorithm calls this methos "n" times.*/
+    /* For those reasons, the complexity of the algorithm is O(log(n)*n), in both worst case and best case.
 
 
 
