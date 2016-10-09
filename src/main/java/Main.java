@@ -95,20 +95,10 @@ public class Main implements DS1Interface  {
 
     @Override
 
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
     /* The HeapSort can be divided in three parts.
      * The first part is to convert the array into a max-heap,
      * then we have to swap the position of the last element with the first one and exclude it from the heap,
      * and finally, we have to reconstruct the max-heap and repeat the algorithm. */
-=======
->>>>>>> Stashed changes
-    /*The HeapSort can be divided in three parts*/
-    /*The first part is convert the array into a max-heap*/
-    /*Then we have to swap the position of the last element with the first one, and exclude it from the heap*/
-    /*Finally, we have to reconstruct the max-heap and repeat the algorithm*/
->>>>>>> origin/master
 
     public int[] heapSort(int[] input) {
     	buildHeap(input);	/* First we need to build the max-heap (algorithm below) */
@@ -128,15 +118,9 @@ public class Main implements DS1Interface  {
         input[i] = input[i2];
         input[i2] = tmp; 
 	}
-<<<<<<< HEAD
 	
 	/* This algorithm sort an array as a max-heap */
 	private static void buildHeap(int[] input) {	/* We build the heap using the algorithm below */
-=======
-
-    /*This algorithm sort an array as a max-heap*/
-	private static void buildHeap(int[] input) {
->>>>>>> origin/master
 		n = input.length-1;
         for (int i = n/2; i >= 0; i--){
             buildMaxHeap(input,i);	/* We ensure that our heap is a max-heap */
@@ -146,14 +130,6 @@ public class Main implements DS1Interface  {
     /* This method is also called "maxHeapify" */
 	private static void buildMaxHeap(int[] input, int i) {
 		{ 
-<<<<<<< Updated upstream
-	        int left = 2*i ; /*The left son of the node*/
-	        int right = 2*i + 1; /*The right son of the node*/
-	        int max = i; /*The variable "max" is going to be the faher node*/
-	        if (left <= n && input[left] > input[i]) /*If the left son is bigger, it will be the new father*/
-	            max = left;
-=======
-<<<<<<< HEAD
 			int left = 2*i ;	/* The left son of the node i */
 			int right = 2*i + 1;	/* The right son of the node i */
 			int max = i;	/* The variable "max" is going to be the father node */
@@ -165,35 +141,14 @@ public class Main implements DS1Interface  {
 	        {
 	            swap(input, i, max);	/* We swap the former father with the new one */
 	            buildMaxHeap(input, max);	/* We make the recursive call */
-=======
-	        int left = 2*i ; /*The left son of the node*/
-	        int right = 2*i + 1; /*The right son of the node*/
-	        int max = i; /*The variable "max" is going to be the faher node*/
-	        if (left <= n && input[left] > input[i]) /*If the left son is bigger, it will be the new father*/
-	            max = left;
->>>>>>> Stashed changes
-	        if (right <= n && input[right] > input[max]) /*If the right son is bigger, it will be the new father*/       
-	            max = right;
-	 
-	        if (max != i) /*If we need to make a change*/
-	        {
-	            swap(input, i, max); /*We swap them*/
-	            buildMaxHeap(input, max); /*We make the recursive call*/
-<<<<<<< Updated upstream
-=======
->>>>>>> origin/master
->>>>>>> Stashed changes
 	        }
 	    }  
     }
 
-<<<<<<< Updated upstream
-    /* The complexity of the buildMaxHeap() is O(log(n)), and the algorithm calls this methos "n" times.*/
-    /* For those reasons, the complexity of the algorithm is O(log(n)*n), in both worst case and best case.
-=======
     /* The complexity of the buildMaxHeap() is O(log(n)) and the algorithm calls this method n times no matter what
      * so, for those reasons, the complexity of the algorithm is O(log(n)*n), in both worst and best scenario. */
->>>>>>> Stashed changes
+
+
 
 
     /* BEGIN UTIL FUNCTION. DO NOT TOUCH */
